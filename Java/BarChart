@@ -1,0 +1,75 @@
+// This program will display a bar chart showing 4 sections figured into the 
+// final grade. Suppose that projects take 20 percent and are displayed in red, 
+// quizzes take 10 percent and are displayed in blue, 
+// midterm exams take 30 percent and are displayed in green, 
+// and the final exam takes 40 percent and is displayed in orange.
+// Danielle Romanoff
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
+import javafx.geometry.Pos;
+import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+
+
+public class C14E12BarGraph extends Application {
+	
+	@Override // Override the start method in the Application class
+	public void start(Stage primaryStage) {
+		
+		// Create a HBox
+		HBox hBox = new HBox(15);
+		hBox.setAlignment(Pos.BOTTOM_CENTER);
+
+	    double Width = 400;  // width
+	    double Height = 400; // height
+	    double HeightLimit = (Height / 2); // y
+
+		Pane pane = new Pane();
+		pane.setPadding(new Insets(5, 10, 0, 10));
+		
+		// Create 4 rectangles
+		Rectangle R1 = new Rectangle(0, 0, Width, HeightLimit);
+		Rectangle R2 = new Rectangle(0, 0, Width, HeightLimit);
+		Rectangle R3 = new Rectangle(0, 0, Width, HeightLimit);
+		Rectangle R4 = new Rectangle(0, 0, Width, HeightLimit);
+		
+		// Fill color for each rectangle
+		R1.setFill(Color.RED);
+		R2.setFill(Color.BLUE);
+		R3.setFill(Color.GREEN);
+		R4.setFill(Color.ORANGE);
+		
+		// Create 4 Text objects
+		Text T1 = new Text(0, 0, "Projects -- 20%");
+		Text T2 = new Text(0, 0, "Quizzes -- 10%");
+		Text T3 = new Text(0, 0, "Midterm -- 30%");
+		Text T4 = new Text(0, 0, "Final -- 40%");
+		
+		// Adds nodes 
+		hBox.getChildren().addAll(getVBox(T1, R1), getVBox(T2, R2), 
+			getVBox(T3, R3), getVBox(T4, R4));
+			pane.getChildren().add(hBox);
+
+		// Create a scene and place it in the stage	
+		Scene scene = new Scene(pane);
+		primaryStage.setTitle("Bar Graph displaying the type of work and its percentage of the grade."); // Set the stage title
+		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.show(); // Display the stage
+	}
+	
+	// Get VBox
+	public VBox getVBox(Text T,Rectangle R) {
+		// Create a VBox
+		VBox vBox = new VBox(5);
+		vBox.setAlignment(Pos.BOTTOM_LEFT);
+		vBox.getChildren().addAll(T,R);
+		return vBox;
+	}
+}
