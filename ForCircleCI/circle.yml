@@ -1,2 +1,13 @@
 general:
   build_dir: api
+  
+  # Override /etc/hosts
+  hosts:
+    circlehost: 127.0.0.1
+    dev.mycompany.com: 127.0.0.1
+    
+    ## Customize test commands
+test:
+  override:
+    - phpunit test/unit-tests # use PHPunit for testing
+    
