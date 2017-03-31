@@ -1,17 +1,12 @@
 machine:
-  java:
-    version: openjdk7
-    
-    services:
-    - docker
-  
+    java:
+        version: openjdk7
 general:
-  branches:
-    only:
-      - master
-          
+    artifacts:
+        - "target/java-demo.war"
 test:
-  override:
-    - curl -fsSL get.nextflow.io | bash
-    - docker pull nextflow/examples
-    - export WITH_DOCKER='-with-docker'; export NXF_CMD=$PWD/nextflow; cd checks/ && bash 
+    post:
+        - mvn clean install
+teardown:
+    post:
+        - curl \-\-data "APP_VERSION=${CIRCLE_BUILD_NUM}" https://manageacloud.com/trigger/YOUR_TRIGGER_HASH
