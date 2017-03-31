@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Clicking the button could result in a catastrophe.</p>
+
+<button onclick="ShowingText()">I dare you</button>
+
+<p id="circleci"></p>
+
+<script>
+function myFunction() {
+    document.getElementById("circleci").innerHTML = "You are very brave!";
+}
+</script>
+
+</body>
+</html>
