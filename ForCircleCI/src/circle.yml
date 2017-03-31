@@ -1,16 +1,7 @@
-machine:
-  node:
-    version: 4.1.0
-  java:
-    version: oraclejdk8
-dependencies:
-  override:
-    - npm install
-    - bower install
-    - npm install -g gulp
-    - gulp build
-test:
-  override:
-    - ant -lib lib/ -buildfile build/build.xml Build: 
-        pwd: ../../
-        timeout: 600
+language: java
+jdk: oraclejdk8
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+script: mvn clean verify
