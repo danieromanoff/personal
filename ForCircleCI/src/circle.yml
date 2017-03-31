@@ -1,12 +1,16 @@
 machine:
-    java:
-        version: openjdk7
-general:
-    artifacts:
-        - "target/java-demo.war"
+  node:
+    version: 4.1.0
+  java:
+    version: oraclejdk8
+dependencies:
+  override:
+    - npm install
+    - bower install
+    - npm install -g gulp
+    - gulp build
 test:
-    post:
-        - mvn clean install
-teardown:
-    post:
-        - curl \-\-data "APP_VERSION=${CIRCLE_BUILD_NUM}" https://manageacloud.com/trigger/YOUR_TRIGGER_HASH
+  override:
+    - ant -lib lib/ -buildfile build/build.xml Build: 
+        pwd: ../../
+        timeout: 600
